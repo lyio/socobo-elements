@@ -1,0 +1,4 @@
+﻿bower_components/
+*.log
+
+../socobo-inventory/
