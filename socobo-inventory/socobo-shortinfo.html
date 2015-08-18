@@ -1,0 +1,87 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-material/paper-material.html">
+
+<dom-module id="socobo-shortinfo">
+  <style>
+    :host{
+    }
+    .short_info{
+      position: relative;
+      height: 50px;
+      line-height: 50px;
+      border-bottom: solid 1px #F4F0EC;
+      color: #8A7F80;
+    }
+
+    .recipe_short_info:hover{
+      background-color: #F4F0EC;
+    }
+
+    paper-checkbox {
+      position: absolute;
+      left: 30px;
+      --paper-checkbox-unchecked-color: #8A7F80;
+      --paper-checkbox-checked-color: #77DD77;
+    }
+
+    .recipe_name{
+      position: absolute;
+      left: 15%;
+    }
+
+    .delete{
+      position: absolute;
+      right: 30px;
+    }
+
+    .edit{
+      position: absolute;
+      right: 70px;
+    }
+
+    iron-icon:hover{
+      color: #77DD77;
+    }
+
+  </style>
+
+  <template>
+    <paper-material class="short_info" elevation="0">
+      <paper-checkbox checked="{{isChecked}}" on-click="changeValue"></paper-checkbox>
+      <span class="recipe_name">{{listItem.name}}</span>
+      <span class="edit"><iron-icon icon="create"></iron-icon></span>
+      <span class="delete"><iron-icon icon="delete"></iron-icon></span>
+    </paper-material>
+  </template>
+
+</dom-module>
+
+<script>
+(function() {
+  Polymer({
+    is: 'socobo-shortinfo',
+
+    properties: {
+      listItem : {
+        type : Object,
+        value : function() { return {name: "Kein Rezept"};}
+      },
+      isChecked : {
+        type : Boolean,
+        value : false
+      }
+    },
+    changeValue : function(){
+      if(this.isChecked == true){
+        this.fire("check");
+      }else{
+        this.fire("uncheck");
+      }
+    }
+  });
+})();
+</script>
